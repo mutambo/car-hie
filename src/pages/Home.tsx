@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import RegisterModal from '../components/RegisterModal';
 
+interface RegisterModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+  }
+  
 // Import images directly
 import hyundai from '../assets/img/hyundai.jpg';
 import carousel2 from '../assets/img/hyundai.jpg';
 import carousel3 from '../assets/img/hyundai.jpg';
 
+
+
 const Home: React.FC = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
   // Use imported images in the array
   const images = [hyundai, carousel2, carousel3];
 
@@ -39,7 +48,13 @@ const Home: React.FC = () => {
         <Link to="/vehicles" className="px-6 py-2 bg-blue-600 text-white rounded-full">
           Explore Vehicles
         </Link>
+        <button onClick={() => setIsModalOpen(true)} className="mt-4 px-4 py-2 bg-green-600 text-white rounded-full">
+          Register Now
+        </button>
       </div>
+
+      {/* Register Modal */}
+      <RegisterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
