@@ -4,17 +4,17 @@ import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import RegisterModal from '../components/RegisterModal';
 
-interface RegisterModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-  }
+
   
 // Import images directly
 import hyundai from '../assets/img/hyundai.jpg';
 import carousel2 from '../assets/img/hyundai.jpg';
 import carousel3 from '../assets/img/hyundai.jpg';
 
-
+interface RegisterModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+  }
 
 const Home: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
