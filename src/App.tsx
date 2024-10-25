@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './index.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import VehicleListing from './pages/VehicleListing';
+import VehicleDetails from './pages/VehicleDetails';
+import Payment from './pages/Payment';
+import ContactUs from './pages/ContactUs';
+import UserProfile from './pages/UserProfile';
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen flex flex-col, flex flex-col h-screen">
+        <Navbar />
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/vehicles" element={<VehicleListing />} />
+            <Route path="/vehicles/:id" element={<VehicleDetails />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/profile" element={<UserProfile/>} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
