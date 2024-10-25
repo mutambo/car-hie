@@ -5,6 +5,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import VehicleListing from './pages/VehicleListing';
+import Register from './auth/Register';
+import Login from './auth/Login';
 import VehicleDetails from './pages/VehicleDetails';
 import Payment from './pages/Payment';
 import ContactUs from './pages/ContactUs';
@@ -18,6 +20,8 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/vehicles" element={<VehicleListing />} />
+            <Route path="/register" element={<Register/>} />
+            <Route path="/login" element={<Login/>} />
             <Route path="/vehicles/:id" element={<VehicleDetails />} />
             <Route path="/payment" element={<Payment />} />
             <Route path="/contact-us" element={<ContactUs />} />

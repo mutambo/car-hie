@@ -1,8 +1,12 @@
 // src/pages/UserProfile.tsx
 import React, { useEffect, useState } from 'react';
-import { getUserProfile, updateUserProfile, getUserBookingHistory } from '../services/userService';
-import type { UserProfile, Booking } from '../services/userService'; // Use type-only import for interfaces
-import { registerUser, signInUser, signOutUser } from '../services/authService';
+import {
+  getUserProfile,
+  updateUserProfile,
+  getUserBookingHistory,
+} from '../services/userService';
+import type { UserProfile, Booking } from '../services/userService';
+import { registerUser, signInUser } from '../services/authService';
 
 const UserProfileComponent: React.FC = () => {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
@@ -11,6 +15,11 @@ const UserProfileComponent: React.FC = () => {
   const [email, setEmail] = useState<string>('');
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [bookingHistory, setBookingHistory] = useState<Booking[] | null>(null);
+  
+  const [registerEmail, setRegisterEmail] = useState<string>('');
+  const [registerPassword, setRegisterPassword] = useState<string>('');
+  const [signInEmail, setSignInEmail] = useState<string>('');
+  const [signInPassword, setSignInPassword] = useState<string>('');
 
   const userId = 'currentUserUID'; // Replace this with actual user ID from auth context
 
@@ -47,6 +56,33 @@ const UserProfileComponent: React.FC = () => {
       await updateUserProfile(userProfile.id, updatedProfile);
       setUserProfile({ ...userProfile, ...updatedProfile });
       setEditMode(false);
+    }
+  };
+
+  const handleRegister = async () => {
+    try {
+      await registerUser(registerEmail, registerPassword);
+      alert('Registration successful. You can now sign in.');
+      setRegisterEmail('');
+      setRegisterPassword('');
+    } catch (error) {
+      // Type assertion to handle the error safely
+      const errorMessage = (error as Error).message || 'Registration failed';
+      alert('Registration failed: ' + errorMessage);
+    }
+  };
+
+  const handleSignIn = async () => {
+    try {
+      await signInUser(signInEmail, signInPassword);
+      alert('Sign-in successful. Welcome!');
+      setSignInEmail('');
+      setSignInPassword('');
+      // You might want to fetch user profile and booking history again after sign-in
+    } catch (error) {
+      // Type assertion to handle the error safely
+      const errorMessage = (error as Error).message || 'Sign-in failed';
+      alert('Sign-in failed: ' + errorMessage);
     }
   };
 
@@ -147,6 +183,56 @@ const UserProfileComponent: React.FC = () => {
       ) : (
         <p>No bookings found.</p>
       )}
+
+      {/* Registration Form */}
+      <h2 className="text-xl font-bold mt-6 mb-4">Register</h2>
+      <div className="mb-4">
+        <input
+          type="email"
+          placeholder="Email"
+          className="mt-2 p-2 border border-gray-300 rounded w-full"
+          value={registerEmail}
+          onChange={(e) => setRegisterEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="mt-2 p-2 border border-gray-300 rounded w-full"
+          value={registerPassword}
+          onChange={(e) => setRegisterPassword(e.target.value)}
+        />
+        <button
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={handleRegister}
+        >
+          Register
+        </button>
+      </div>
+
+      {/* Sign-in Form */}
+      <h2 className="text-xl font-bold mt-6 mb-4">Sign In</h2>
+      <div className="mb-4">
+        <input
+          type="email"
+          placeholder="Email"
+          className="mt-2 p-2 border border-gray-300 rounded w-full"
+          value={signInEmail}
+          onChange={(e) => setSignInEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          className="mt-2 p-2 border border-gray-300 rounded w-full"
+          value={signInPassword}
+          onChange={(e) => setSignInPassword(e.target.value)}
+        />
+        <button
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={handleSignIn}
+        >
+          Sign In
+        </button>
+      </div>
     </div>
   );
 };

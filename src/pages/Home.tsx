@@ -27,7 +27,7 @@ const Home: React.FC = () => {
       >
         {images.map((img, index) => (
           <div key={index} className="w-full h-full">
-            <img src={img} alt={`Slide ${index + 1}`} className="object-cover h-[60vh] w-full" /> {/* Fix height */}
+            <img src={img} alt={`Slide ${index + 1}`} className="object-cover h-[72.5vh] w-full" /> {/* Fix height */}
           </div>
         ))}
       </Carousel>

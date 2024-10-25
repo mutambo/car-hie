@@ -1,6 +1,3 @@
-// src/auth/Register.tsx
-export {}; // This line makes the file a module
-
 import React, { useState } from 'react';
 import { registerUser } from '../services/authService'; // Import your registration function
 
