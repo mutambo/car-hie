@@ -56,7 +56,7 @@ const VehicleDetails: React.FC = () => {
         <img
           src={vehicle.image}
           alt={vehicle.name}
-          className="w-full md:w-1/2 h-80 object-cover rounded-lg shadow-lg"
+          className="w-full md:w-1/2 h-90 object-cover rounded-lg shadow-lg"
         />
         <div className="flex-1 bg-white rounded-lg shadow-xl p-6">
           <h2 className="text-4xl font-extrabold text-gray-800 mb-4">{vehicle.name}</h2>
@@ -99,7 +99,7 @@ const VehicleDetails: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row gap-6 mt-6">
           <div className="flex-1">
-            <label className="block text-gray-700 font-medium mb-2">Destination</label>
+            <label className="w-1/2 block text-gray-700 font-medium mb-2">Destination</label>
             <input
               type="text"
               value={destination}
@@ -109,6 +109,7 @@ const VehicleDetails: React.FC = () => {
             />
           </div>
         </div>
+
 
         {/* Document Upload Section */}
         <div className="mt-8 space-y-4">
@@ -152,12 +153,14 @@ const VehicleDetails: React.FC = () => {
         </div>
 
         {/* Confirm Booking Button */}
-        <button
-          onClick={handleBooking}
-          className="mt-8 w-full px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          Confirm Booking
-        </button>
+        <div className="flex justify-center">
+          <button
+            onClick={handleBooking}
+            className="mt-8 w-60 content-center px-8 py-3 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Confirm Booking
+          </button>
+        </div>
       </div>
     </div>
   );
