@@ -45,10 +45,10 @@ const Home: React.FC = () => {
       <div className="relative z-10 bg-black bg-opacity-50 text-white text-center p-8 max-w-md mx-auto rounded-md">
         <h2 className="text-3xl font-bold mb-4">Welcome to Your Trusted Car Hire Service</h2>
         <p className="text-lg mb-6">Affordable car rentals for every journey</p>
-        <Link to="/vehicles" className="px-6 py-2 bg-blue-600 text-white rounded-full">
+        <Link to="/vehicles" className="px-6 py-2  ml-2 bg-blue-600 text-white rounded-full">
           Explore Vehicles
         </Link>
-        <button onClick={() => setIsModalOpen(true)} className="mt-4 px-4 py-2 bg-green-600 text-white rounded-full">
+        <button onClick={() => setIsModalOpen(true)} className="mt-4 ml-20 px-4 py-2 bg-blue-600 text-white rounded-full">
           Register Now
         </button>
       </div>
